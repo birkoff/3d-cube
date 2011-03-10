@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8" />
+	<title></title>
+	<script type="text/javascript">
+		slides=false;
+		ie=false;
+		if(navigator.platform=="iPad" || (/Safari[\/\s](\d+\.\d+)/.test(navigator.userAgent) && !(/Chrome[\/\s](\d+\.\d+)/.test(navigator.userAgent) )) )
+		{
+			var css = document.createElement("link");
+			css.setAttribute("type", "text/css");
+			css.setAttribute("rel", "stylesheet");
+			css.setAttribute("href", "cube.css");
+			document.getElementsByTagName("head")[0].appendChild(css);
+			
+		    var prototyp=document.createElement("script");
+			prototyp.setAttribute("type", "text/javascript");
+			prototyp.setAttribute("src", "prototype.js");
+			document.getElementsByTagName("head")[0].appendChild(prototyp);
+			
+			var js=document.createElement("script");
+			js.setAttribute("type", "text/javascript");
+			js.setAttribute("src", "cube.js");
+			document.getElementsByTagName("head")[0].appendChild(js);
+			slides=false;
+		}
+		
+	</script>
+</head>
+<body class="page-directory"><div id="main_container"><div id="ge_header" valign="middle">
+				
+<div id="ge_content">
+	<div id="intro">
+	
+
+	<div id="wrapper" class="wrapper">
+	
+	<div id="experiment">	
+		
+		<div id="cube" class="presentation">      
+	        
+			<div class="slide face two">
+				<img src="image-1.jpg" />
+	        </div>
+			
+	        <div class="slide face three">
+				<img src="image-2.jpg" />
+	        </div>
+	        
+			<div class="slide face four">
+				<img src="image-3.jpg" />
+	        </div>
+	        
+			<div class="slide face five">
+				<img src="image-4.jpg" />
+	        </div>
+			
+	    </div>
+		
+	</div>
+
+
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

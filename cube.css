@@ -1,0 +1,40 @@
+	#experiment {
+	  -webkit-perspective: 800; 
+	  /*rigth:0px;*/
+    }
+    
+    #cube {
+      position: relative;
+      margin: 0 auto;
+	  margin-top:50px;
+      height: 300px;
+      width: 300px;
+      -webkit-transition: -webkit-transform 2s linear;
+      -webkit-transform-style: preserve-3d;
+    }
+    
+    .face {
+      position: absolute;
+      padding: 0px;
+      background-color: rgba(50, 50, 50, 0.7);
+      line-height: 1em;
+      color: #fff;
+      border: 1px solid #555;
+      -webkit-border-radius: 3px;
+    }   
+
+    #cube .two {
+      -webkit-transform: translateZ(120px);
+    }
+
+    #cube .three {
+      -webkit-transform: rotateY(90deg) translateZ(120px);
+    }
+
+    #cube .four {
+      -webkit-transform: rotateY(180deg) translateZ(120px);
+    }
+
+    #cube .five {
+      -webkit-transform: rotateY(-90deg) translateZ(120px);
+    }
