@@ -1,69 +1,135 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html dir="ltr" lang="en-US">
 <head>
 	<meta charset="UTF-8" />
-	<title></title>
-	<script type="text/javascript">
-		slides=false;
-		ie=false;
-		if(navigator.platform=="iPad" || (/Safari[\/\s](\d+\.\d+)/.test(navigator.userAgent) && !(/Chrome[\/\s](\d+\.\d+)/.test(navigator.userAgent) )) )
-		{
-			var css = document.createElement("link");
-			css.setAttribute("type", "text/css");
-			css.setAttribute("rel", "stylesheet");
-			css.setAttribute("href", "cube.css");
-			document.getElementsByTagName("head")[0].appendChild(css);
-			
-		    var prototyp=document.createElement("script");
-			prototyp.setAttribute("type", "text/javascript");
-			prototyp.setAttribute("src", "prototype.js");
-			document.getElementsByTagName("head")[0].appendChild(prototyp);
-			
-			var js=document.createElement("script");
-			js.setAttribute("type", "text/javascript");
-			js.setAttribute("src", "cube.js");
-			document.getElementsByTagName("head")[0].appendChild(js);
-			slides=false;
-		}
-		
-	</script>
-</head>
-<body class="page-directory"><div id="main_container"><div id="ge_header" valign="middle">
-				
-<div id="ge_content">
-	<div id="intro">
-	
+	<title>3D rotating cube navigation</title>
+	 <script type="text/javascript" src="prototype.js"></script>	
+  	<style type="text/css" media="screen">
+    
+    #experiment {
+	  -webkit-perspective: 800; 
+    }
+    
+    #cube {
+      position: relative;
+      margin: 0 auto;
+      height: 300px;
+      width: 300px;
+      -webkit-transition: -webkit-transform 2s linear;
+      -webkit-transform-style: preserve-3d;
+    }
+    
+    .face {
+      position: absolute;
+      padding: 0px;
+      background-color: rgba(50, 50, 50, 0.7);
+      line-height: 1em;
+      color: #fff;
+      border: 1px solid #555;
+      -webkit-border-radius: 3px;
+    }   
 
-	<div id="wrapper" class="wrapper">
-	
+    #cube .two {
+      -webkit-transform: translateZ(150px);
+    }
+
+    #cube .three {
+      -webkit-transform: rotateY(90deg) translateZ(150px);
+    }
+
+    #cube .four {
+      -webkit-transform: rotateY(180deg) translateZ(150px);
+    }
+
+    #cube .five {
+      -webkit-transform: rotateY(-90deg) translateZ(150px);
+    }
+  </style>
+  <script type="text/javascript">
+	var targetRotation = 0;
+	var targetRotationOnMouseDown = 0;
+	var mouseX = 0;
+	var mouseXOnMouseDown = 0;
+	document.addEventListener('mousedown', onDocumentMouseDown, false);
+	document.addEventListener('touchstart', onDocumentTouchStart, false);
+	document.addEventListener('touchmove', onDocumentTouchMove, false);
+	setInterval(loop, 10);
+	function onDocumentMouseDown(event) 
+	{
+ 		event.preventDefault();
+ 		document.addEventListener('mousemove', onDocumentMouseMove, false);
+		document.addEventListener('mouseup', onDocumentMouseUp, false);
+		//document.addEventListener('mouseout', onDocumentMouseOut, false);
+
+		mouseXOnMouseDown = event.clientX;
+		targetRotationOnMouseDown = targetRotation;
+	}
+ 
+	function onDocumentMouseMove( event ) 
+	{
+ 		mouseX = event.clientX;
+ 		targetRotation = targetRotationOnMouseDown + (mouseX - mouseXOnMouseDown) * .9;
+	}
+ 
+	function onDocumentMouseUp( event ) 
+	{
+		document.removeEventListener('mousemove', onDocumentMouseMove, false);
+		document.removeEventListener('mouseup', onDocumentMouseUp, false);
+		document.removeEventListener('mouseout', onDocumentMouseOut, false);
+	}
+ 
+	function onDocumentMouseOut( event ) 
+	{
+ 		document.removeEventListener('mousemove', onDocumentMouseMove, false);
+		document.removeEventListener('mouseup', onDocumentMouseUp, false);
+		document.removeEventListener('mouseout', onDocumentMouseOut, false);
+	}
+ 
+	function onDocumentTouchStart( event ) 
+	{
+ 		if(event.touches.length == 1) 
+		{
+ 			event.preventDefault();
+ 			mouseXOnMouseDown = event.touches[0].pageX;
+			targetRotationOnMouseDown = targetRotation;
+		}
+	}
+ 
+	function onDocumentTouchMove( event ) 
+	{
+		if(event.touches.length == 1) 
+		{
+			event.preventDefault();
+ 			mouseX = event.touches[0].pageX;
+			targetRotation = targetRotationOnMouseDown + (mouseX - mouseXOnMouseDown) *0.05;
+		}
+	}
+
+  	function loop() 
+	{
+ 		$('cube').style.webkitTransform = "rotateY("+targetRotation+"deg)";	
+	}  	
+  </script>
+</head>
+<body>
+<br /><br /><br />
+<div id="wrapper">
 	<div id="experiment">	
-		
-		<div id="cube" class="presentation">      
-	        
-			<div class="slide face two">
+		<div id="cube">      
+	        <div class="face two">
 				<img src="image-1.jpg" />
 	        </div>
-			
-	        <div class="slide face three">
+	        <div class="face three">
 				<img src="image-2.jpg" />
 	        </div>
-	        
-			<div class="slide face four">
+	        <div class="face four">
 				<img src="image-3.jpg" />
 	        </div>
-	        
-			<div class="slide face five">
+	        <div class="face five">
 				<img src="image-4.jpg" />
 	        </div>
-			
-	    </div>
-		
-	</div>
-
-
-</div>
-</div>
-</div>
-</div>
+	    </div>	
+	</div>	
+</div>		
 </body>
 </html>
